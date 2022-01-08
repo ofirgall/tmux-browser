@@ -21,6 +21,7 @@ if ! ps -ax | grep firefox | grep -q -v grep; then
 fi
 
 # TODO: pin the tab
+# TODO: open in focus
 eval $browser_new_window $tab_id_name
 sleep 0.5 # TODO: while check to avoid sleep
 window_id=$(bt list | cut -f1,3 | grep $tab_id_name | cut -f 1-2 -d ".")

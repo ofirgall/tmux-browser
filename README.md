@@ -18,7 +18,7 @@ TODO: complete
 Add plugin to the list of TPM plugins:
 
 ```tmux.conf
-set -g @plugin 'ofir753/tmux-browser'
+set -g @plugin 'ofirgall/tmux-browser'
 ```
 
 Press prefix + I to install it.
@@ -28,7 +28,7 @@ Press prefix + I to install it.
 Clone the repo:
 
 ```bash
-$ git clone https://github.com/ofir753/tmux-browser.git ~/clone/path
+$ git clone https://github.com/ofirgall/tmux-browser.git ~/clone/path
 ```
 
 Add this line to your .tmux.conf:
