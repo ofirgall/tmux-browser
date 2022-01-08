@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euo pipefail
 
 # TODO: get it from option
 SESSIONS_DIR=$HOME/.tmux/browser-sessions
