@@ -4,11 +4,8 @@ set -euo pipefail
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-hello_world="$CURRENT_DIR/scripts/hello_world.sh"
+# TODO: option
+tmux bind-key B run-shell "$CURRENT_DIR/scripts/open_browser.sh"
 
-main()
-{
-	echo $($hello_world)
-}
-
-main
+# TODO: option
+set -g @resurrect-hook-post-save-all '$CURRENT_DIR/scripts/save_sessions.sh'
