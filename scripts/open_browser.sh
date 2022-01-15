@@ -9,8 +9,11 @@ current_session=$(tmux display-message -p '#S')
 tab_id_name=localhost:1212/dont_close-tmux-browser_$current_session
 
 if bt list | grep -q "$tab_id_name$"; then
-	# TODO: jump to the session window
-	tmux display "[ERROR] Session is already running!"
+	tmux display "[INFO] Session is already running, jumping to active window!"
+	window_id=$(bt list | cut -f1,3 | grep "$tab_id_name$" | cut -f 2 -d ".")
+	active_window_title=$(bt query +active -windowId $window_id | cut -f2)
+	wmctlr_window_id=$(wmctrl -l | grep "$active_window_title" | cut -f1 -d " ")
+	wmctrl -i -R $wmctlr_window_id
 	exit
 fi
 

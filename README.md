@@ -6,6 +6,8 @@ Plugin that let you have a browser session that is attached to the tmux sessions
 
 * Firefox/Chrome/Chromium
 * [brotab](https://https://github.com/balta2ar/brotab)]
+* screen
+* wmctrl
 
 ### Usage
 
