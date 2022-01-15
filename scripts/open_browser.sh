@@ -8,12 +8,17 @@ current_session=$(tmux display-message -p '#S')
 # Using localhost to don't query any web browser
 tab_id_name=localhost:1212/dont_close-tmux-browser_$current_session
 
+focus_tabid_window()
+{
+	window_id=$(bt list | cut -f1,3 | grep "$tab_id_name$" | cut -f2 -d ".")
+	active_window_title=$(bt query +active -windowId $window_id | cut -f2)
+	wmctlr_window_id=$(wmctrl -l | grep -F "$active_window_title" | cut -f1 -d " ")
+	wmctrl -i -R $wmctlr_window_id
+}
+
 if bt list | grep -q "$tab_id_name$"; then
 	tmux display "[INFO] Session is already running, jumping to active window!"
-	window_id=$(bt list | cut -f1,3 | grep "$tab_id_name$" | cut -f 2 -d ".")
-	active_window_title=$(bt query +active -windowId $window_id | cut -f2)
-	wmctlr_window_id=$(wmctrl -l | grep "$active_window_title" | cut -f1 -d " ")
-	wmctrl -i -R $wmctlr_window_id
+	focus_tabid_window
 	exit
 fi
 
@@ -24,7 +29,6 @@ if ! ps -ax | grep firefox | grep -q -v grep; then
 fi
 
 # TODO: pin the tab
-# TODO: open in focus
 eval $browser_new_window $tab_id_name
 sleep 0.5 # TODO: while check to avoid sleep
 window_id=$(bt list | cut -f1,3 | grep "$tab_id_name$" | cut -f 1-2 -d ".")
@@ -40,3 +44,5 @@ if [ -f $SESSIONS_DIR/$current_session ]; then
 else
 	tmux display "New Browser Opened"
 fi
+
+focus_tabid_window
