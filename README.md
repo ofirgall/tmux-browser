@@ -54,6 +54,14 @@ TODO: complete
 ```tmux.conf
 ```
 
+### TODO
+
+Requires Custom Extension:
+* move tabs to another session in the browser ui
+* show current session
+* pin the tab with dont close
+* prompt are you sure on special tab
+
 ### License
 
 [MIT](LICENSE)

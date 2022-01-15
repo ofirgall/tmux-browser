@@ -8,7 +8,7 @@ current_session=$(tmux display-message -p '#S')
 # Using localhost to don't query any web browser
 tab_id_name=localhost:1212/dont_close-tmux-browser_$current_session
 
-if bt list | grep -q $tab_id_name; then
+if bt list | grep -q "$tab_id_name$"; then
 	# TODO: jump to the session window
 	tmux display "[ERROR] Session is already running!"
 	exit
@@ -24,7 +24,7 @@ fi
 # TODO: open in focus
 eval $browser_new_window $tab_id_name
 sleep 0.5 # TODO: while check to avoid sleep
-window_id=$(bt list | cut -f1,3 | grep $tab_id_name | cut -f 1-2 -d ".")
+window_id=$(bt list | cut -f1,3 | grep "$tab_id_name$" | cut -f 1-2 -d ".")
 
 if [[ $(echo $window_id | tr -cd ' \t' | wc -c) != '0' ]]; then
 	tmux display "[ERROR] Multiple windows with the same tab id name: $tab_id_name"
