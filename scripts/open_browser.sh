@@ -10,7 +10,6 @@ current_session=$(tmux display-message -p '#S')
 # Using localhost to don't query any web browser
 tab_id_name=localhost:1212/dont_close-tmux-browser_$current_session
 
-# TODO: option, if no wmctrl present
 focus_tabid_window()
 {
 	if ! command -v wmctrl &> /dev/null
