@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# TODO: get it from option
-SESSIONS_DIR=$HOME/.tmux/browser-sessions
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$CURRENT_DIR/helpers.sh"
+
+SESSIONS_DIR=$(sessions_dir)
 mkdir -p $SESSIONS_DIR
 
 bt_list=$(bt list)

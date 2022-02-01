@@ -1,23 +1,29 @@
 # [WIP] Attach Browser Sessions to Tmux Sessions
 
 Plugin that let you have a browser session that is attached to the tmux sessions.
-TODO: explain about why and add demo
 
-### Dependencies
+TODO: add demo
 
-* Firefox/Chrome/Chromium
+## Dependencies
+
+* Firefox/Chrome/Chromium (Tested on Firefox)
 * [brotab](https://https://github.com/balta2ar/brotab)]
-* wmctrl (recommended see more TODO: complete)
-* screen (recommended see more TODO: complete)
+* screen (to run in background to avoid stucking the tmux)
+* [reserruct](https://github.com/tmux-plugins/tmux-resurrect)
+* wmctrl (recommended, used to jump to the window)
 
-### Usage
-Note: it's recommended to disable `Open previous windows and tabs` browser option
+## Usage
 
-TODO: complete
-```tmux.conf
-```
+Hit `prefix` + `@open_browser_key` to open a browser session attached to your tmux session.
 
-### Installation with Tmux Plugin Manager (recommended)
+_**Note**_: The plugin identify the browser session by the "special tab", `dont_close-tmux-browser_{session_name}`.
+
+_**Note**_: it's recommended to disable `Open previous windows and tabs` browser option
+
+
+## Installation
+
+### Installation with [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) (recommended)
 
 Add plugin to the list of TPM plugins:
 
@@ -47,30 +53,67 @@ Reload TMUX environment with:
 $ tmux source-file ~/.tmux.conf
 ```
 
-### Configurations
+## Configuration Options
 
-#### Option example
+The following configuration options are available:
 
-Follows same rules as `set-option`
+### `@open_browser_key`
 
-TODO: complete
+Key used to open the browser session. 
 
 ```tmux.conf
+set -g @open_browser_key 'B'
 ```
 
-### TODO
+### `@new_browser_window`
+
+The command to run a new window.
+E.g: `screen -dm -- firefox --new-window url`
+
+```tmux.conf
+set -g @new_browser_window 'screen -dm -- firefox --new-window'
+```
+
+### `@browser_session_dir`
+
+The directory to save the sessions to.
+
+```tmux.conf
+set -g @browser_session_dir '$HOME/.tmux/browser-sessions'
+```
+
+### `@browser_wait_timeout`
+
+Timeout value to wait for windows to open.
+
+```tmux.conf
+set -g @browser_wait_timeout '5.0'
+```
+
+### `@browser_dont_hook_to_resurrect`
+
+Set to '1' to disable hook to resurrect (Auto saves the session). 
+
+```tmux.conf
+set -g @browser_dont_hook_to_resurrect '0'
+```
+
+---
+
+## TODO
 
 Doesn't Require Custom Extensions:
-* Auto-open browser on attach
+* Auto-open browser on attach (option)
+* Auto-close browser on de-attach (option)
 * move active tab of current session to other session (+jump?)
 
 Requires Custom Extension:
 * move tabs to another session in the browser ui
 * show current session
 * try to get rid of the special tab
-* pin the tab with dont close
+* pin the "special tab"
 * prompt are you sure on special tab + some nice html
 
-### License
+## License
 
 [MIT](LICENSE)
