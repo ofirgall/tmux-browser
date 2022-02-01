@@ -2,12 +2,13 @@
 
 # TODO: get it from option
 SESSIONS_DIR=$HOME/.tmux/browser-sessions
-browser_new_window="firefox --new-window"
+browser_new_window="screen -dm -- firefox --new-window"
 
 current_session=$(tmux display-message -p '#S')
 # Using localhost to don't query any web browser
 tab_id_name=localhost:1212/dont_close-tmux-browser_$current_session
 
+# TODO: option, if no wmctrl present
 focus_tabid_window()
 {
 	window_id=$(bt list | cut -f1,3 | grep "$tab_id_name$" | cut -f2 -d ".")
@@ -19,12 +20,6 @@ focus_tabid_window()
 if bt list | grep -q "$tab_id_name$"; then
 	tmux display "[INFO] Session is already running, jumping to active window!"
 	focus_tabid_window
-	exit 0
-fi
-
-# TODO: firefox dependent
-if ! ps -ax | grep firefox | grep -q -v grep; then
-	tmux display "[INFO] Boot firefox first to avoid stucking tmux"
 	exit 0
 fi
 

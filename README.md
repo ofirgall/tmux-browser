@@ -1,15 +1,17 @@
 # [WIP] Attach Browser Sessions to Tmux Sessions
 
 Plugin that let you have a browser session that is attached to the tmux sessions.
+TODO: explain about why and add demo
 
 ### Dependencies
 
 * Firefox/Chrome/Chromium
 * [brotab](https://https://github.com/balta2ar/brotab)]
-* screen
-* wmctrl
+* wmctrl (recommended see more TODO: complete)
+* screen (recommended see more TODO: complete)
 
 ### Usage
+Note: it's recommended to disable `Open previous windows and tabs` browser option
 
 TODO: complete
 ```tmux.conf
@@ -57,6 +59,9 @@ TODO: complete
 ```
 
 ### TODO
+
+Doesn't Require Custom Extensions:
+* Auto-open browser on attach
 
 Requires Custom Extension:
 * move tabs to another session in the browser ui
