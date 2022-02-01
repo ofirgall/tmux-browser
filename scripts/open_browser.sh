@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # TODO: get it from option
 SESSIONS_DIR=$HOME/.tmux/browser-sessions
@@ -25,13 +27,12 @@ fi
 
 # TODO: pin the tab
 eval $browser_new_window $tab_id_name
-while true
-do
-	window_id=$(bt list | cut -f1,3 | grep "$tab_id_name$" | cut -f 1-2 -d ".")
-	if [ ! -z "$window_id" ]; then
-		break
-	fi
-done
+window_id=$(timeout 5.0 "$CURRENT_DIR/wait_for_new_window.sh" $tab_id_name)
+
+if [ -z "$window_id" ]; then
+	tmux display "[ERROR] Web browser window didnt found"
+	exit 0
+fi
 
 if [[ $(echo $window_id | tr -cd ' \t' | wc -c) != '0' ]]; then
 	tmux display "[ERROR] Multiple windows with the same tab id name: $tab_id_name"

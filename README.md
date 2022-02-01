@@ -62,12 +62,14 @@ TODO: complete
 
 Doesn't Require Custom Extensions:
 * Auto-open browser on attach
+* move active tab of current session to other session (+jump?)
 
 Requires Custom Extension:
 * move tabs to another session in the browser ui
 * show current session
+* try to get rid of the special tab
 * pin the tab with dont close
-* prompt are you sure on special tab
+* prompt are you sure on special tab + some nice html
 
 ### License
 
