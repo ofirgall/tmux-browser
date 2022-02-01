@@ -13,20 +13,29 @@ tab_id_name=localhost:1212/dont_close-tmux-browser_$current_session
 # TODO: option, if no wmctrl present
 focus_tabid_window()
 {
-	window_id=$(bt list | cut -f1,3 | grep "$tab_id_name$" | cut -f2 -d ".")
+	window_id=$1
 	active_window_title=$(bt query +active -windowId $window_id | cut -f2)
-	wmctlr_window_id=$(wmctrl -l | grep -F "$active_window_title" | cut -f1 -d " ")
+	# TODO: option the timeout
+	wmctlr_window_id=$(timeout 5.0 "$CURRENT_DIR/wait_for_active_window.sh" $active_window_title)
+	if [ -z "$wmctlr_window_id" ]; then
+		tmux display "[ERROR] Active window not found, not jumping."
+		exit 0
+	fi
 	wmctrl -i -R $wmctlr_window_id
 }
 
-if bt list | grep -q "$tab_id_name$"; then
+tmux display "[INFO] tmux-browser: Opening Browser!"
+bt_list=$(bt list)
+if echo "$bt_list" | grep -q "$tab_id_name$"; then
 	tmux display "[INFO] Session is already running, jumping to active window!"
-	focus_tabid_window
+	window_id=$(echo "$bt_list" | cut -f1,3 | grep "$tab_id_name$" | cut -f2 -d ".")
+	focus_tabid_window $window_id
 	exit 0
 fi
 
 # TODO: pin the tab
 eval $browser_new_window $tab_id_name
+# TODO: option the timeout
 window_id=$(timeout 5.0 "$CURRENT_DIR/wait_for_new_window.sh" $tab_id_name)
 
 if [ -z "$window_id" ]; then
@@ -46,5 +55,6 @@ else
 	tmux display "New Browser Opened"
 fi
 
-focus_tabid_window
+window_id=$(echo $window_id | cut -f2 -d ".")
+focus_tabid_window $window_id
 exit 0
