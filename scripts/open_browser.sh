@@ -38,7 +38,7 @@ if echo "$bt_list" | grep -q "$tab_id_name$"; then
 fi
 
 # TODO: pin the tab
-eval "$(tmux_option "@new_browser_window" "screen -dm -- firefox --new-window")" $tab_id_name
+eval "$(tmux_option "@new_browser_window" "screen -dm -- firefox --new-window")" "http://$tab_id_name"
 window_id=$(timeout $TIMEOUT "$CURRENT_DIR/wait_for_new_window.sh" $tab_id_name)
 
 if [ -z "$window_id" ]; then
