@@ -14,7 +14,9 @@ Plugin that let you have a browser session that is attached to the tmux sessions
 
 ## Usage
 
-Hit `prefix` + `@open_browser_key` to open a browser session attached to your tmux session.
+Hit `prefix` + `@open_browser_key` to open a browser session (window) attached to your tmux session, when [tmux-reserruct](https://github.com/tmux-plugins/tmux-resurrect) saves your tmux sessions the web browser sessions will be saved to ` ~/.tmux/browser-sessions`.
+
+Each session has his own web browser window which is a "web&tmux session", I recommend to always browse in `tmux-browser` session, this way your tabs will be organized per tmux session and you can always jump back to your work session in ease.
 
 _**Note**_: The plugin identify the browser session by the "special tab", `dont_close-tmux-browser_{session_name}`.
 
