@@ -6,7 +6,7 @@ source "$CURRENT_DIR/helpers.sh"
 SESSIONS_DIR=$(sessions_dir)
 mkdir -p $SESSIONS_DIR
 
-bt_list=$(bt list)
+bt_list=$($CURRENT_DIR/bt_list_wrapper.sh) || exit $?
 
 while read session; do
 	window_id=$(echo $session | cut -f 1-2 -d ".")

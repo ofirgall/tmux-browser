@@ -29,7 +29,8 @@ focus_tabid_window()
 }
 
 tmux display "[INFO] tmux-browser: Opening Browser!"
-bt_list=$(bt list)
+bt_list=$($CURRENT_DIR/bt_list_wrapper.sh) || exit $?
+
 if echo "$bt_list" | grep -q "$tab_id_name$"; then
 	tmux display "[INFO] Session is already running!"
 	window_id=$(echo "$bt_list" | cut -f1,3 | grep "$tab_id_name$" | cut -f2 -d ".")

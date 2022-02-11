@@ -115,6 +115,8 @@ Requires Custom Extension:
 * try to get rid of the special tab
 * pin the "special tab"
 * prompt are you sure on special tab + some nice html
+* Reset bt mediator if needed
+
 
 ## License
 
