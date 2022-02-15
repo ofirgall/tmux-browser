@@ -7,7 +7,8 @@ SESSIONS_DIR=$(sessions_dir)
 mkdir -p $SESSIONS_DIR
 
 session_name=$1
-bt_list=$2
+window_id=$2
+bt_list=$3
 
 tmpfile=$(mktemp /tmp/tmux-browser.XXXXXX)
 found_special_tab=0

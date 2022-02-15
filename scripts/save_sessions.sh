@@ -11,5 +11,5 @@ while read session; do
 	# echo "Window ID:$window_id"
 	# echo "Session Name:$session_name"
 
-	$CURRENT_DIR/save_session.sh $session_name "$(echo "$bt_list")"
+	$CURRENT_DIR/save_session.sh $session_name $window_id "$(echo "$bt_list")"
 done < <(echo "$bt_list" | cut -f1,3 | grep dont_close-tmux-browser)
