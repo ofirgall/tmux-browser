@@ -9,7 +9,6 @@ Plugin that let you have a browser session that is attached to the tmux sessions
 * Firefox/Chrome/Chromium (Tested on Firefox)
 * [brotab](https://https://github.com/balta2ar/brotab)
 * [reserruct](https://github.com/tmux-plugins/tmux-resurrect)
-* screen (to run in background to avoid stucking the tmux)
 * wmctrl (recommended, used to jump to the window)
 
 ## Usage
@@ -70,10 +69,10 @@ set -g @open_browser_key 'B'
 ### `@new_browser_window`
 
 The command to run a new window.
-E.g: `screen -dm -- firefox --new-window url`
+E.g: `firefox --new-window url`
 
 ```tmux.conf
-set -g @new_browser_window 'screen -dm -- firefox --new-window'
+set -g @new_browser_window 'firefox --new-window'
 ```
 
 ### `@browser_session_dir`

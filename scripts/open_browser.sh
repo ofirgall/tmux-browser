@@ -19,7 +19,6 @@ focus_tabid_window()
 
 	window_id=$1
 	active_window_title=$(bt query +active -windowId $window_id | cut -f2)
-	echo $TIMEOUT
 	wmctlr_window_id=$(timeout $TIMEOUT "$CURRENT_DIR/wait_for_active_window.sh" $active_window_title)
 	if [ -z "$wmctlr_window_id" ]; then
 		tmux display "[ERROR] Active window not found, not jumping."
@@ -39,7 +38,8 @@ if echo "$bt_list" | grep -q "$tab_id_name$"; then
 fi
 
 # TODO: pin the tab
-eval "$(tmux_option "@new_browser_window" "screen -dm -- firefox --new-window")" "http://$tab_id_name"
+open_browser_command="$(tmux_option "@new_browser_window" "firefox --new-window") http://$tab_id_name"
+tmux run-shell -b "$open_browser_command"
 window_id=$(timeout $TIMEOUT "$CURRENT_DIR/wait_for_new_window.sh" $tab_id_name)
 
 if [ -z "$window_id" ]; then
