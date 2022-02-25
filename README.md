@@ -9,7 +9,6 @@ Plugin that let you have a browser session that is attached to the tmux sessions
 * Firefox/Chrome/Chromium (Tested on Firefox)
 * [brotab](https://https://github.com/balta2ar/brotab)
 * [reserruct](https://github.com/tmux-plugins/tmux-resurrect)
-* screen (to run in background to avoid stucking the tmux)
 * wmctrl (recommended, used to jump to the window)
 
 ## Usage
@@ -70,10 +69,10 @@ set -g @open_browser_key 'B'
 ### `@new_browser_window`
 
 The command to run a new window.
-E.g: `screen -dm -- firefox --new-window url`
+E.g: `firefox --new-window url`
 
 ```tmux.conf
-set -g @new_browser_window 'screen -dm -- firefox --new-window'
+set -g @new_browser_window 'firefox --new-window'
 ```
 
 ### `@browser_session_dir`
@@ -100,13 +99,27 @@ Set to '1' to disable hook to resurrect (Auto saves the session).
 set -g @browser_dont_hook_to_resurrect '0'
 ```
 
+### `@browser_launch_on_attach`
+
+Set to '1' to launch restored browser on attach
+
+```tmux.conf
+set -g @browser_launch_on_attach '0'
+```
+
+### `@browser_close_on_deattach`
+
+Set to '1' to close the attached browser on session de-attach
+
+```tmux.conf
+set -g @browser_close_on_deattach '1'
+```
+
 ---
 
 ## TODO
 
 Doesn't Require Custom Extensions:
-* Auto-open browser on attach (option)
-* Auto-close browser on de-attach (option)
 * move active tab of current session to other session (+jump?)
 
 Requires Custom Extension:
@@ -115,6 +128,8 @@ Requires Custom Extension:
 * try to get rid of the special tab
 * pin the "special tab"
 * prompt are you sure on special tab + some nice html
+* Reset bt mediator if needed
+
 
 ## License
 
