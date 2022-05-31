@@ -16,7 +16,8 @@ else
 fi
 
 if [ "$(tmux_option "@browser_close_on_deattach" "1")" == "1" ]; then
-	tmux set-hook -g 'client-detached[8921]' "run-shell "$CURRENT_DIR/scripts/save_and_close_browser.sh""
+	cmd="$CURRENT_DIR/scripts/save_and_close_browser.sh \$(tmux display-message -p \#S)"
+	tmux set-hook -g 'client-detached[8921]' "run-shell '$cmd'"
 else
-	tmux set-hook -gu 'client-attached[8921]' "run-shell "$CURRENT_DIR/scripts/open_browser.sh""
+	tmux set-hook -gu 'client-detached[8921]' "run-shell "$CURRENT_DIR/scripts/save_and_close_browser.sh""
 fi
