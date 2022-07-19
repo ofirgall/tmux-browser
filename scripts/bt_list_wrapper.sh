@@ -1,6 +1,10 @@
 #!/bin/bash
 
-bt_list=$(timeout 5.0 bt list)
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$CURRENT_DIR/helpers.sh"
+
+TIMEOUT="$(tmux_option "@browser_brotab_timeout" "5.0")"
+bt_list=$(timeout $TIMEOUT bt list)
 
 if [ $? != 0 ]; then
 	# TODO: to avoid this we need to keepalive the mediator from the extension side

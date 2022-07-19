@@ -115,6 +115,14 @@ Set to '1' to close the attached browser on session de-attach
 set -g @browser_close_on_deattach '1'
 ```
 
+### `@browser_brotab_timeout`
+
+Timeout value to wait for `bt list` (can be very slow on windows).
+
+```tmux.conf
+set -g @browser_brotab_timeout '5.0'
+```
+
 ---
 
 ## TODO
