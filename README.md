@@ -8,7 +8,7 @@ Plugin that let you have a browser session that is attached to the tmux sessions
 
 * Firefox/Chrome/Chromium (Tested on Firefox)
 * [brotab](https://github.com/balta2ar/brotab)
-* [reserruct](https://github.com/tmux-plugins/tmux-resurrect)
+* [resurrect](https://github.com/tmux-plugins/tmux-resurrect)
 * wmctrl (recommended, used to jump to the window)
 
 ## Usage
