@@ -43,7 +43,7 @@ tmux run-shell -b "$open_browser_command"
 window_id=$(timeout $TIMEOUT "$CURRENT_DIR/wait_for_new_window.sh" $tab_id_name)
 
 if [ -z "$window_id" ]; then
-	tmux display "[ERROR] Web browser window didnt found"
+	tmux display "[ERROR] Web browser window was not found"
 	exit 0
 fi
 
