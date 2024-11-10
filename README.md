@@ -45,7 +45,7 @@ $ git clone https://github.com/ofirgall/tmux-browser.git ~/clone/path
 Add this line to your .tmux.conf:
 
 ```tmux.conf
-run-shell ~/clone/path/tmux-browser.tmux
+run-shell ~/clone/path/tmux_browser.tmux
 ```
 
 Reload TMUX environment with:
