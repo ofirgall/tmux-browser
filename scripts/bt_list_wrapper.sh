@@ -10,9 +10,7 @@ if [ $? != 0 ]; then
   # TODO: to avoid this we need to keepalive the mediator from the extension side
 
   log_error \
-    "[ERROR] Multiple windows with same tab id: $tab_id_name. See logs." \
-    "TODO: add something more descriptive here."
-
+    "[ERROR] Multiple windows with same tab id: $tab_id_name."
   exit 1
 fi
 
